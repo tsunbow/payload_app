@@ -10,7 +10,9 @@
     "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
-    "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
+    "lint": "run-p lint:* --continue-on-error",
+    "lint:next": "cross-env NODE_OPTIONS=--no-deprecation next lint",
+    "lint:prettier": "cross-env NODE_OPTIONS=--no-deprecation prettier --check ./",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "test": "pnpm run test:int && pnpm run test:e2e",
@@ -32,6 +34,7 @@
     "sharp": "0.34.2"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
     "@playwright/test": "1.54.1",
     "@testing-library/react": "16.3.0",
     "@types/node": "^22.5.4",
@@ -45,6 +48,7 @@
     "playwright": "1.54.1",
     "playwright-core": "1.54.1",
     "prettier": "^3.4.2",
+    "prettier-plugin-organize-imports": "^4.2.0",
     "typescript": "5.7.3",
     "vite-tsconfig-paths": "5.1.4",
     "vitest": "3.2.3"
